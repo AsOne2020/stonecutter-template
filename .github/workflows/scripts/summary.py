@@ -45,15 +45,19 @@ def main():
 	except Exception as e:
 		warnings.append(f'Failed to parse workflow artifacts JSON: {e}, {workflow_artifacts_json_str!r}')
 
-	with open('settings.json') as f:
-		settings: dict = json.load(f)
+    subprojects = sorted([
+	os.path.basename(os.path.dirname(path))
+		for path in glob.glob('versions/*/gradle.properties')
+	])
+
+    print('detected subprojects:', subprojects)
 
 	with open(os.environ['GITHUB_STEP_SUMMARY'], 'w') as f:
 		f.write('## Build Artifacts Summary\n\n')
 		f.write('| Subproject | For Minecraft | File | Size | SHA-256 |\n')
 		f.write('| --- | --- | --- | --- | --- |\n')
 
-		for subproject in settings['versions']:
+        for subproject in subprojects:
 			if len(target_subprojects) > 0 and subproject not in target_subprojects:
 				print('skipping {}'.format(subproject))
 				continue
@@ -63,6 +67,7 @@ def main():
 			file_paths = [fp for fp in sorted(file_paths) if all(not fp.endswith(f'-{classifier}.jar') for classifier in ['sources', 'dev', 'shadow'])]
 			if len(file_paths) == 0:
 				file_name = '*not found*'
+				file_size = '*N/A*'
 				sha256 = '*N/A*'
 			else:
 				file_name = '`{}`'.format(os.path.basename(file_paths[0]))

@@ -21,7 +21,6 @@ stonecutter {
 	kotlinController = false
 	centralScript = "build.gradle"
 	var ignore = [
-			"26.1.2-forge"
 	]
 
 	create(rootProject) {
