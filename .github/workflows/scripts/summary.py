@@ -46,9 +46,9 @@ def main():
 		warnings.append(f'Failed to parse workflow artifacts JSON: {e}, {workflow_artifacts_json_str!r}')
 
     subprojects = sorted([
-	os.path.basename(os.path.dirname(path))
-		for path in glob.glob('versions/*/gradle.properties')
-	])
+        os.path.basename(os.path.dirname(path))
+        for path in glob.glob('versions/*/gradle.properties')
+    ])
 
     print('detected subprojects:', subprojects)
 
