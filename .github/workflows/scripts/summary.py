@@ -50,14 +50,14 @@ def main():
 		for path in glob.glob('versions/*/gradle.properties')
 	])
 
-    print('detected subprojects:', subprojects)
+	print('detected subprojects:', subprojects)
 
 	with open(os.environ['GITHUB_STEP_SUMMARY'], 'w') as f:
 		f.write('## Build Artifacts Summary\n\n')
 		f.write('| Subproject | For Minecraft | File | Size | SHA-256 |\n')
 		f.write('| --- | --- | --- | --- | --- |\n')
 
-        for subproject in subprojects:
+		for subproject in subprojects:
 			if len(target_subprojects) > 0 and subproject not in target_subprojects:
 				print('skipping {}'.format(subproject))
 				continue
