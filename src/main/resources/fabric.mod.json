@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+
+  "name": "${name}",
+  "description": "Template for my fabric mods",
+  "authors": [
+    "As_One"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com",
+    "issues": "https://github.com/AsOne2020/multiplatform-mod-template/issues",
+    "sources": "https://github.com/AsOne2020/multiplatform-mod-template"
+  },
+  "license": "LGPLv3",
+  "icon": "assets/template/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.asone.template.TemplateMod"
+    ]
+  },
+  "mixins": [
+    "template.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.4",
+    "minecraft": "${minecraft}"
+  }
+}

@@ -1,0 +1,38 @@
+pluginManagement {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		gradlePluginPortal()
+		maven { url = "https://maven.fabricmc.net/" }
+		maven {
+			url = "https://maven.kikugie.dev/snapshots"
+			name = "KikuGie Snapshots"
+		}
+		maven { url = "https://maven.architectury.dev/" }
+		maven { url = "https://files.minecraftforge.net/maven/" }
+	}
+}
+
+plugins {
+	id "dev.kikugie.stonecutter" version "0.9"
+}
+
+stonecutter {
+	kotlinController = false
+	centralScript = "build.gradle"
+	var ignore = [
+			"26.1.2-forge"
+	]
+
+	create(rootProject) {
+		file("versions").listFiles { file ->
+			file.isDirectory() && !ignore.contains(file.name)
+		}.each { file ->
+			version(file.name, file.name.replaceFirst(/-[^-]+$/, ""))
+		}
+
+		vcsVersion = "1.21.11-fabric"
+	}
+}
+
+rootProject.name = "Template"

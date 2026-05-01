@@ -1,0 +1,22 @@
+modLoader = "javafml"
+loaderVersion = "[31,)"
+license = "LGPLv3"
+issueTrackerURL = "https://github.com/AsOne2020/multiplatform-mod-template/issues"
+
+[[mods]]
+modId = "${id}"
+version = "${version}"
+displayName = "${name}"
+displayURL = "https://github.com/AsOne2020/multiplatform-mod-template"
+authors = "As_One"
+description = '''
+Template for my forge mods
+'''
+logoFile = "icon.png"
+
+[[dependencies."${id}"]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft}"
+ordering = "NONE"
+side = "BOTH"
